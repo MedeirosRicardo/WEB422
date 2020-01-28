@@ -24,6 +24,7 @@ const saleTableTemplate = _.template(
             <td><%- sales.customer.email %></td>
             <td><%- sales.storeLocation %></td>
             <td><%- sales.items.length %></td>
+            <td><%- moment.utc(sales.saleDate).local().format("LLLL") %></td>
             
         </tr>
     <% }); %>`
@@ -36,6 +37,16 @@ const saleModelBodyTemplate = _.template(
     <strong>age:</strong><%- this.age %><br>
     <strong>satisfaction:</strong><% this.satisfaction %> / 5
     <br><br>
+    <h4>Items: $<% this.XXX.toFixed(2) %></h4>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Product Name</th>
+                <th>Quantity</th>
+                <th>Price</th>
+            </tr>
+        </thead>
+        
     `
 );
 
@@ -53,9 +64,16 @@ function loadSaleData() {
         })
 }
 
+// Clicked row
+$("#sale-table tbody").on("click","tr",function(e) {
+    let clickedRow = $(this).attr("data-id");
+    console.log(clickedRow);
+});
+
+
 // Document is ready
 $(function() {
-
+    
     // Load data into page
     loadSaleData();
 });
