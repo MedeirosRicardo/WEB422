@@ -19,12 +19,12 @@ const perPage = 10;
 
 // Table template
 const saleTableTemplate = _.template(
-    `<% _.forEach(sales, function(sales) { %>
+    `<% _.forEach(saleData, function(sales) { %>
         <tr data-id=<%- sales._id %>>
             <td><%- sales.customer.email %></td>
             <td><%- sales.storeLocation %></td>
-            <td><%- sales.items %></td>
-            <td><%- moment.utc(sales.saleDate).local().format('LLLL) %></td>
+            <td><%- sales.items.length %></td>
+            
         </tr>
     <% }); %>`
 );
@@ -41,14 +41,16 @@ const saleModelBodyTemplate = _.template(
 
 // Function to populate saleData array
 function loadSaleData() {
-    fetch(`/api/sales?page=${page}&perPage=${perPage}`)
-        .then(response => response.json())
-        .then(json => {
-            saleData = json;
-        });
-        let rows = saleTableTemplate(saleData);
-    $("#sale-table tbody").html(rows);
-    $("#current-page").html(page);
+    fetch(`https://arnin-web422-ass1.herokuapp.com/api/sales?page=${page}&perPage=${perPage}`)
+        .then((response) => {
+            return response.json();
+        })
+        .then((myJson) => {
+            saleData = myJson;
+            let rows = saleTableTemplate(saleData);
+            $("#sale-table tbody").html(rows);
+            $("#current-page").html(page);
+        })
 }
 
 // Document is ready
