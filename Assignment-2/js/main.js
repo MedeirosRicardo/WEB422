@@ -92,8 +92,6 @@ $("#sale-table tbody").on("click","tr",function(e) {
         backdrop: 'static',
         keyboard: false
     });
-    console.log(clickedSale)
-
 });
 
 // Previous page button
