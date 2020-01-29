@@ -31,13 +31,13 @@ const saleTableTemplate = _.template(
 );
 
 // Modal template
-const saleModelBodyTemplate = _.template(
+const saleModalBodyTemplate = _.template(
     `<h4>Customer</h4>
-    <strong>email:</strong><%- clickedSale.email %><br>
-    <strong>age:</strong><%- clickedSale.age %><br>
-    <strong>satisfaction:</strong><% clickedSale.satisfaction %> / 5
+    <strong>email:</strong> <%- obj.customer.email %><br>
+    <strong>age:</strong> <%- obj.customer.age %><br>
+    <strong>satisfaction:</strong> <%- obj.customer.satisfaction %> / 5
     <br><br>
-    <h4>Items: $<% clickedSale.total.toFixed(2) %></h4>
+    <h4>Items: $<%- obj.total.toFixed(2) %></h4>
     <table class="table">
         <thead>
             <tr>
@@ -46,7 +46,15 @@ const saleModelBodyTemplate = _.template(
                 <th>Price</th>
             </tr>
         </thead>
-        
+        <tbody>
+            <% _.forEach(obj.items, function(sales) { %>
+                <tr data-id=<%- sales._id %>>
+                    <td><%- sales.name %></td>
+                    <td><%- sales.quantity %></td>
+                    <td>$<%- sales.price %></td>
+                </tr>
+            <% }); %>
+        </tbody>
     `
 );
 
@@ -76,6 +84,16 @@ $("#sale-table tbody").on("click","tr",function(e) {
     for (let i = 0; i < clickedSale.items.length; i++) {
         clickedSale.total += clickedSale.items[i].price * clickedSale.items[i].quantity;
     }
+    
+    $("#sale-modal h4").html(`Sale: ${clickedSale._id}`);
+    $("#modal-body").html(saleModalBodyTemplate(clickedSale));
+
+    $('#sale-modal').modal( {
+        backdrop: 'static',
+        keyboard: false
+    });
+    console.log(clickedSale)
+
 });
 
 // Document is ready
