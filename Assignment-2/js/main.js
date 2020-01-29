@@ -55,7 +55,7 @@ const saleModalBodyTemplate = _.template(
                 </tr>
             <% }); %>
         </tbody>
-    `
+    </table>`
 );
 
 // Function to populate saleData array
@@ -94,6 +94,20 @@ $("#sale-table tbody").on("click","tr",function(e) {
     });
     console.log(clickedSale)
 
+});
+
+// Previous page button
+$("#previous-page").on("click", function(e) {
+    if (page > 1) {
+        page--;
+    }
+    loadSaleData();
+});
+
+// Next page button
+$("#next-page").on("click", function(e) {
+    page++;
+    loadSaleData();
 });
 
 // Document is ready
