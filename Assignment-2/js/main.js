@@ -33,11 +33,11 @@ const saleTableTemplate = _.template(
 // Modal template
 const saleModelBodyTemplate = _.template(
     `<h4>Customer</h4>
-    <strong>email:</strong><%- this.email %><br>
-    <strong>age:</strong><%- this.age %><br>
-    <strong>satisfaction:</strong><% this.satisfaction %> / 5
+    <strong>email:</strong><%- clickedSale.email %><br>
+    <strong>age:</strong><%- clickedSale.age %><br>
+    <strong>satisfaction:</strong><% clickedSale.satisfaction %> / 5
     <br><br>
-    <h4>Items: $<% this.XXX.toFixed(2) %></h4>
+    <h4>Items: $<% clickedSale.total.toFixed(2) %></h4>
     <table class="table">
         <thead>
             <tr>
@@ -67,9 +67,16 @@ function loadSaleData() {
 // Clicked row
 $("#sale-table tbody").on("click","tr",function(e) {
     let clickedRow = $(this).attr("data-id");
-    console.log(clickedRow);
-});
+    let clickedSale = saleData.find( ({ _id}) => _id == clickedRow);
+    
+    // Add property total to clicked object
+    clickedSale.total = 0;
 
+    // For loop to sum the total of the sale, price * quantity
+    for (let i = 0; i < clickedSale.items.length; i++) {
+        clickedSale.total += clickedSale.items[i].price * clickedSale.items[i].quantity;
+    }
+});
 
 // Document is ready
 $(function() {
