@@ -1,8 +1,13 @@
 import React from "react";
 import "./App.css";
-import { Navbar, Nav, NavItem, NavDropdown, Dropdown, FormGroup, FormControl, Grid, Row, Col } from "react-bootstrap";
+import { Navbar, Nav, NavItem, NavDropdown, Dropdown, FormGroup, FormControl, Container, Row, Col } from "react-bootstrap";
 import { Link, Switch, Redirect, Route } from "react-router-dom";
 import { LinkContainer } from "react-router-bootstrap";
+
+// Import routes
+import Sales from "./Sales";
+import Sale from "./Sale";
+import NotFound from "./NotFound";
 
 // Class component
 class App extends React.Component {
@@ -25,7 +30,7 @@ class App extends React.Component {
       if (this.state.recentlyViewed.indexOf(id) === -1) {
         this.state.recentlyViewed.push(id);
       }
-      return (this.state.recentlyViewed);
+      return this.state.recentlyViewed;
     });
   }
 
@@ -34,7 +39,7 @@ class App extends React.Component {
     this.setState(() => {
       this.searchId = e.target.value;
     });
-    return (this.searchId);
+    return this.searchId;
   }
 
   // Render function
@@ -79,6 +84,38 @@ class App extends React.Component {
             </Navbar.Form>
           </Navbar.Collapse>
         </Navbar>
+
+        <Container>
+          <Row>
+            <Col md={12}>
+
+              {/* Routes */}
+              <Switch>
+
+                {/* Redirect Home to Sales */}
+                <Route exact path="/" render={() => (
+                  <Redirect push to={"/Sales"} />
+                )} />
+
+                {/* Route to Sales */}
+                <Route exact path="/Sales" render={() => (
+                  <Sales />
+                )} />
+
+                {/* Route to Sale/id */}
+                <Route path="/Sale/:id" render={(props) => (
+                  <Sale id={props.match.params.id} viewedSale />
+                )} />
+
+                {/* Route to catch all non-existent route */}
+                <Route render={() => (
+                  <NotFound />
+                )} />
+
+              </Switch>
+            </Col>
+          </Row>
+        </Container>
       </div>
     );
   }
