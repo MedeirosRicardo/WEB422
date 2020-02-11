@@ -14,6 +14,8 @@ import './App.css';
 import { Navbar, Nav, NavItem, NavDropdown, Dropdown, FormGroup, FormControl, Container, Row, Col } from 'react-bootstrap';
 import { Link, Switch, Redirect, Route } from 'react-router-dom';
 import { LinkContainer } from 'react-router-bootstrap';
+import { MenuItem } from 'react-bootstrap';
+
 
 // Create App component
 class App extends Component {
@@ -50,9 +52,48 @@ class App extends Component {
 
   render() {
     return (
-      <div><h1>React is Working</h1></div>
+      <div>
+        <Navbar inverse collapseOnSelect staticTop>
+          <LinkContainer to="/">
+            <Navbar.Brand>
+              WEB422 - Sales
+            </Navbar.Brand>
+          </LinkContainer>
+          <Navbar.Toggle />
+          <Navbar.Collapse>
+            <Nav>
+              <LinkContainer to="/Sales">
+                <NavItem>
+                  All Sales
+                </NavItem>
+              </LinkContainer>
+              <NavDropdown title="Previously Viewed" id="basic-nav-dropdown">
+                {this.state.recentlyViewed.length > 0 ?
+                this.state.recentlyViewed.map((id, index) => (
+                  <LinkContainer to={`/Sale/${id}`} key={index}>
+                    <Dropdown>
+                      Sale: {id}
+                    </Dropdown>
+                  </LinkContainer>
+                )) :
+              <Dropdown>
+                ...
+              </Dropdown>
+              }
+              </NavDropdown>
+            </Nav>
+            <Navbar.Form pullRight>
+              <FormGroup>
+                <FormControl type="text" onChange={this.updateSearchId} placeholder="Sale ID" />
+              </FormGroup>{''}
+              <Link className="btn btn-default" to={"/Sale/" + this.state.searchId}>Search</Link>
+            </Navbar.Form>
+          </Navbar.Collapse>
+        </Navbar>
+      </div>
     );
   }
+  
 }
 
 export default App;
