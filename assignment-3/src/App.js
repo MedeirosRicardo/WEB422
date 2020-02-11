@@ -14,7 +14,11 @@ import './App.css';
 import { Navbar, Nav, NavItem, NavDropdown, Dropdown, FormGroup, FormControl, Container, Row, Col } from 'react-bootstrap';
 import { Link, Switch, Redirect, Route } from 'react-router-dom';
 import { LinkContainer } from 'react-router-bootstrap';
-import { MenuItem } from 'react-bootstrap';
+
+// Import Routes
+import Sales from './components/Sales';
+import Sale from './components/Sale';
+import NotFound from './components/NotFound';
 
 
 // Create App component
@@ -69,17 +73,17 @@ class App extends Component {
               </LinkContainer>
               <NavDropdown title="Previously Viewed" id="basic-nav-dropdown">
                 {this.state.recentlyViewed.length > 0 ?
-                this.state.recentlyViewed.map((id, index) => (
-                  <LinkContainer to={`/Sale/${id}`} key={index}>
-                    <Dropdown>
-                      Sale: {id}
-                    </Dropdown>
-                  </LinkContainer>
-                )) :
-              <Dropdown>
-                ...
-              </Dropdown>
-              }
+                  this.state.recentlyViewed.map((id, index) => (
+                    <LinkContainer to={`/Sale/${id}`} key={index}>
+                      <Dropdown>
+                        Sale: {id}
+                      </Dropdown>
+                    </LinkContainer>
+                  )) :
+                  <Dropdown>
+                    ...
+                  </Dropdown>
+                }
               </NavDropdown>
             </Nav>
             <Navbar.Form pullRight>
@@ -90,10 +94,41 @@ class App extends Component {
             </Navbar.Form>
           </Navbar.Collapse>
         </Navbar>
+
+        <Container>
+          <Row>
+            <Col md={12}>
+
+              {/* Routes */}
+              <Switch>
+
+                {/* Redirect Home to Sales */}
+                <Route exact path="/" render={() => (
+                  <Redirect push to={"/Sales"} />
+                )} />
+
+                {/* Route to Sales */}
+                <Route exact path="/Sales" render={() => (
+                  <Sales />
+                )} />
+
+                {/* Route to Sale/id */}
+                <Route path="/Sale/:id" render={(props) => (
+                  <Sale id={props.match.params.id} viewedSale />
+                )} />
+
+                {/* Route to catch all non-existent route */}
+                <Route render={() => (
+                  <NotFound />
+                )} />
+
+              </Switch>
+            </Col>
+          </Row>
+        </Container>
       </div>
     );
-  }
-  
+  } 
 }
 
 export default App;
