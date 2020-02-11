@@ -10,36 +10,47 @@
 ********************************************************************************/
 
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
+import { Navbar, Nav, NavItem, NavDropdown, Dropdown, FormGroup, FormControl, Container, Row, Col } from 'react-bootstrap';
+import { Link, Switch, Redirect, Route } from 'react-router-dom';
+import { LinkContainer } from 'react-router-bootstrap';
 
+// Create App component
 class App extends Component {
+
   constructor(props) {
     super(props);
     this.state = {
       recentlyViewed: [],
       searchId: ""
     };
+    
+    // Bind the method inside the constructor
+    this.viewedSale = this.viewedSale.bind(this);
+    this.updateSearchId = this.updateSearchId.bind(this);
+
   }
-  
+
+  // Method implementation
+  viewedSale(id) {
+    this.setState(() => {
+      if (this.state.recentlyViewed.indexOf(id) === -1) {
+        this.state.recentlyViewed.push(id);
+      }
+    });
+  }
+
+  // Method implementation
+  updateSearchId(e) {
+    this.setState({
+      searchId: e.target.value
+    });
+  }
+
+
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-        </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-        </a>
-        </header>
-      </div>
+      <div><h1>React is Working</h1></div>
     );
   }
 }
