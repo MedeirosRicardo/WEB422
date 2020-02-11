@@ -11,7 +11,7 @@
 
 import React, { Component } from 'react';
 import './App.css';
-import { Navbar, Nav, NavItem, NavDropdown, Dropdown, FormGroup, FormControl, Container, Row, Col } from 'react-bootstrap';
+import { Navbar, Nav, NavItem, NavDropdown, Dropdown, FormGroup, FormControl, Grid, Row, Col } from 'react-bootstrap';
 import { Link, Switch, Redirect, Route } from 'react-router-dom';
 import { LinkContainer } from 'react-router-bootstrap';
 
@@ -58,12 +58,14 @@ class App extends Component {
     return (
       <div>
         <Navbar inverse collapseOnSelect staticTop>
-          <LinkContainer to="/">
-            <Navbar.Brand>
-              WEB422 - Sales
+          <Navbar.Header>
+            <LinkContainer to="/">
+              <Navbar.Brand>
+                WEB422 - Sales
             </Navbar.Brand>
-          </LinkContainer>
-          <Navbar.Toggle />
+            </LinkContainer>
+            <Navbar.Toggle />
+          </Navbar.Header>
           <Navbar.Collapse>
             <Nav>
               <LinkContainer to="/Sales">
@@ -95,7 +97,7 @@ class App extends Component {
           </Navbar.Collapse>
         </Navbar>
 
-        <Container>
+        <Grid>
           <Row>
             <Col md={12}>
 
@@ -125,7 +127,7 @@ class App extends Component {
               </Switch>
             </Col>
           </Row>
-        </Container>
+        </Grid>
       </div>
     );
   } 
