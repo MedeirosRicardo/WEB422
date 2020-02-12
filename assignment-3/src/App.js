@@ -11,7 +11,7 @@
 
 import React, { Component } from 'react';
 import './App.css';
-import { Navbar, Nav, NavItem, NavDropdown, Dropdown, FormGroup, FormControl, Grid, Row, Col } from 'react-bootstrap';
+import { Navbar, Nav, NavItem, NavDropdown, MenuItem, FormGroup, FormControl, Grid, Row, Col } from 'react-bootstrap';
 import { Link, Switch, Redirect, Route } from 'react-router-dom';
 import { LinkContainer } from 'react-router-bootstrap';
 
@@ -77,14 +77,14 @@ class App extends Component {
                 {this.state.recentlyViewed.length > 0 ?
                   this.state.recentlyViewed.map((id, index) => (
                     <LinkContainer to={`/Sale/${id}`} key={index}>
-                      <Dropdown>
+                      <MenuItem>
                         Sale: {id}
-                      </Dropdown>
+                      </MenuItem>
                     </LinkContainer>
                   )) :
-                  <Dropdown>
+                  <MenuItem>
                     ...
-                  </Dropdown>
+                  </MenuItem>
                 }
               </NavDropdown>
             </Nav>
