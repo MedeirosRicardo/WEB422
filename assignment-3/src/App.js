@@ -39,12 +39,11 @@ class App extends Component {
 
   // Method implementation
   viewedSale(id) {
-    this.setState(() => {
-      if (this.state.recentlyViewed.indexOf(id) === -1) {
-        this.state.recentlyViewed.push(id);
-      }
-    });
-  }
+    if (this.state.recentlyViewed.indexOf(id) === -1) {
+    this.setState({
+        recentlyViewed: [...this.state.recentlyViewed, id]
+      })
+  }}
 
   // Method implementation
   updateSearchId(e) {
@@ -116,7 +115,7 @@ class App extends Component {
 
                 {/* Route to Sale/id */}
                 <Route path="/Sale/:id" render={(props) => (
-                  <Sale id={props.match.params.id} viewedSale />
+                  <Sale id={props.match.params.id} viewedSale={this.viewedSale} />
                 )} />
 
                 {/* Route to catch all non-existent route */}
