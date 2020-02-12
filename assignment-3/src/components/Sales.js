@@ -1,14 +1,16 @@
-import React from "react";
+import React, { Component } from "react";
 import { withRouter } from "react-router-dom";
 import { Table, Pagination } from "react-bootstrap";
 
-class Sales extends React.Component {
+class Sales extends Component {
     constructor(props) {
         super(props);
         this.state = {
             sales: [],
             currentPage: 1
-        }
+        };
+        this.previousPage = this.previousPage.bind(this);
+        this.nextPage = this.nextPage.bind(this);
     }
 
     // Utility method implementation
@@ -29,13 +31,21 @@ class Sales extends React.Component {
     }
     
     // Previous Page
-    
+    previousPage() {
+        if (this.state.currentPage > 1) {
+            this.getData(this.state.currentPage - 1);
+            this.setState({currentPage: this.state.currentPage - 1});
+        }
+    }
     
     // Next Page
+    nextPage() {
+        this.getData(this.state.currentPage + 1);
+        this.setState({currentPage: this.state.currentPage + 1});
+    }
     
-    
+    // Render function
     render() {
-        console.log(this.state.sales)
         if (this.state.sales.length > 0) {
             return (
                 <div>
@@ -49,15 +59,21 @@ class Sales extends React.Component {
                             </tr>
                         </thead>
                         <tbody>
-                            {/* TODO: Loop through the sales in the state and display their data. HINT: for the Sale date, the following
-                           code can be used: new Date(sale.saleDate).toLocaleDateString() */}
-            </tbody>
+                            {this.state.sales.map((sales) => (
+                                <tr key={sales._id} onClick={() => {this.props.history.push(`/Sale/${sales._id}`)}}>
+                                    <td>{sales.customer.email}</td>
+                                    <td>{sales.storeLocation}</td>
+                                    <td>{sales.items.length}</td>
+                                    <td>{new Date(sales.saleDate).toLocaleDateString()}</td>
+                                </tr>
+                            ))}
+                        </tbody>
                     </Table>
                     <Pagination>
-                        <Pagination.Prev /* TODO: invoke prevPage when this is clicked */ />
-            <Pagination.Item>{/* TODO: show the value of the currentPage */}</Pagination.Item>
-                        <Pagination.Next /* TODO: invoke nextPage when this is clicked */ />
-            </Pagination>
+                        <Pagination.Prev onClick={this.previousPage} />
+                        <Pagination.Item>{this.state.currentPage}</Pagination.Item>
+                        <Pagination.Next onClick={this.nextPage} />
+                    </Pagination>
                 </div>
             );
         } else {
