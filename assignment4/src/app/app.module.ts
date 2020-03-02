@@ -12,6 +12,7 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
 import { PostCardComponent } from './post-card/post-card.component';
 import { SearchWidgetComponent } from './search-widget/search-widget.component';
 import { LatestPostComponent } from './latest-post/latest-post.component';
+import { CategoriesComponent } from './categories/categories.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { LatestPostComponent } from './latest-post/latest-post.component';
     PageNotFoundComponent,
     PostCardComponent,
     SearchWidgetComponent,
-    LatestPostComponent
+    LatestPostComponent,
+    CategoriesComponent
   ],
   imports: [
     BrowserModule,
