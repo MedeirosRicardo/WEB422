@@ -14,6 +14,7 @@ import { SearchWidgetComponent } from './search-widget/search-widget.component';
 import { LatestPostComponent } from './latest-post/latest-post.component';
 import { CategoriesComponent } from './categories/categories.component';
 import { TagsComponent } from './tags/tags.component';
+import { PostDataComponent } from './post-data/post-data.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { TagsComponent } from './tags/tags.component';
     SearchWidgetComponent,
     LatestPostComponent,
     CategoriesComponent,
-    TagsComponent
+    TagsComponent,
+    PostDataComponent
   ],
   imports: [
     BrowserModule,
