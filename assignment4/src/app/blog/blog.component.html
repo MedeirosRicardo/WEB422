@@ -5,38 +5,7 @@
             <div class="container">
                 <div class="row">
                     <!-- post -->
-                    
-                    <app-post-card [post]="blogPosts[0]"></app-post-card>
-                    
-                    
-                    
-                    
-                    <!-- post -->
-                    <div class="post col-xl-6">
-                        <div class="post-thumbnail"><a href="post.html"><img src="/assets/img/blog-post-4.jpeg"
-                                    alt="..." class="img-fluid"></a></div>
-                        <div class="post-details">
-                            <div class="post-meta d-flex justify-content-between">
-                                <div class="date meta-last">20 May | 2016</div>
-                                <div class="category"><a href="#">Business</a></div>
-                            </div><a href="post.html">
-                                <h3 class="h4">Alberto Savoia Can Teach You About Interior</h3>
-                            </a>
-                            <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
-                                eiusmod tempor incididunt ut labore.</p>
-                            <div class="post-footer d-flex align-items-center"><a href="#"
-                                    class="author d-flex align-items-center flex-wrap">
-                                    <div class="avatar"><img src="/assets/img/avatar-1.jpg" alt="..." class="img-fluid">
-                                    </div>
-                                    <div class="title"><span>John Doe</span></div>
-                                </a>
-                                <div class="date"><i class="icon-clock"></i> 2 months ago</div>
-                                <div class="comments meta-last"><i class="icon-comment"></i>12</div>
-                            </div>
-                        </div>
-                    </div>
-
-
+                    <app-post-card class="post col-xl-6" *ngFor="let post of blogPosts" [post]="post"></app-post-card>
                 </div>
             </div>
         </main>
