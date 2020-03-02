@@ -1,12 +1,12 @@
 <div class="post-thumbnail">
-    <a href="post.html">
+    <a routerLink="/post">
         <img src="{{ post.featuredImage }}" alt="..." class="img-fluid"></a>
 </div>
 <div class="post-details">
     <div class="post-meta d-flex justify-content-between">
         <div class="date meta-last">{{ post.postDate }}</div>
         <div class="category"><a href="#">{{ post.category }}</a></div>
-    </div><a href="post.html">
+    </div><a routerLink="/post">
         <h3 class="h4">{{ post.title }}</h3>
     </a>
     <div class="text-muted" [innerHTML]="post.post"></div>

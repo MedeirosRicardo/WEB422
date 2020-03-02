@@ -3,11 +3,11 @@
     </div>
     <div class="post-details">
         <div class="post-meta d-flex justify-content-between">
-            <div class="category"><a href="#">{{ post.category }}</a></div>
+            <div class="category"><a routerLink>{{ post.category }}</a></div>
         </div>
-        <h1>{{ post.title }}<a href="#"><i
+        <h1>{{ post.title }}<a routerLink><i
                     class="fa fa-bookmark-o"></i></a></h1>
-        <div class="post-footer d-flex align-items-center flex-column flex-sm-row"><a href="#"
+        <div class="post-footer d-flex align-items-center flex-column flex-sm-row"><a routerLink
                 class="author d-flex align-items-center flex-wrap">
                 <div class="avatar"><img src="/assets/img/user.svg" alt="..." class="img-fluid">
                 </div>
@@ -21,53 +21,23 @@
         </div>
         <div class="post-body" [innerHTML="post.post"]></div>
         <div class="post-tags" [tags]="post.tags" *ngFor="let tag of tags">
-            <a href="#" class="tag">{{ tag }}</a>
+            <a routerLink class="tag">{{ tag }}</a>
         </div>
         <div class="post-comments">
             <header>
                 <h3 class="h6">Post Comments<span class="no-of-comments">({{ post.comments.length }})</span></h3>
             </header>
-            <div class="comment">
+            <div class="comment" [comments]="post.comments" *ngFor="let comment of comments">
                 <div class="comment-header d-flex justify-content-between">
                     <div class="user d-flex align-items-center">
                         <div class="image"><img src="/assets/img/user.svg" alt="..."
                                 class="img-fluid rounded-circle"></div>
-                        <div class="title"><strong>Jabi Hernandiz</strong><span class="date">May
-                                2016</span></div>
-                    </div>
-                </div>
-                <div class="comment-body">
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
-                        incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</p>
-                </div>
-            </div>
-            <div class="comment">
-                <div class="comment-header d-flex justify-content-between">
-                    <div class="user d-flex align-items-center">
-                        <div class="image"><img src="/assets/img/user.svg" alt="..."
-                                class="img-fluid rounded-circle"></div>
-                        <div class="title"><strong>Nikolas</strong><span class="date">May 2016</span>
+                        <div class="title"><strong>{{ comment.author }}</strong>
+                            <span class="date">{{ comment.date }}</span>
                         </div>
                     </div>
                 </div>
-                <div class="comment-body">
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
-                        incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</p>
-                </div>
-            </div>
-            <div class="comment">
-                <div class="comment-header d-flex justify-content-between">
-                    <div class="user d-flex align-items-center">
-                        <div class="image"><img src="/assets/img/user.svg" alt="..."
-                                class="img-fluid rounded-circle"></div>
-                        <div class="title"><strong>John Doe</strong><span class="date">May 2016</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="comment-body">
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
-                        incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</p>
-                </div>
+                <div class="comment-body" [innerHTML]="comment.comment"></div>
             </div>
         </div>
         <div class="add-comment">
