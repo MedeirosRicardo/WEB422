@@ -13,30 +13,11 @@
             <!-- Widget [Search Bar Widget]-->
             <app-search-widget></app-search-widget>
             <!-- Widget [Latest Posts Widget] -->
-            <div class="widget latest-posts">
-                <header>
-                    <h3 class="h6">Latest Posts</h3>
-                </header>
-                <div class="blog-posts">
-                    <app-latest-post [posts]="posts" *ngFor="let posts of blogPosts.slice(0,3)"></app-latest-post>
-                </div>
-            </div>
+            <app-latest-post [posts]="blogPosts.slice(0,3)"></app-latest-post>
             <!-- Widget [Categories Widget]-->
-            <div class="widget categories">
-                <header>
-                    <h3 class="h6">Categories</h3>
-                </header>
-                <app-categories></app-categories>
-            </div>
+            <app-categories></app-categories>
             <!-- Widget [Tags Cloud Widget]-->
-            <div class="widget tags">
-                <header>
-                    <h3 class="h6">Tags</h3>
-                </header>
-                <ul class="list-inline">
-                    <app-tags></app-tags>
-                </ul>
-            </div>
+            <app-tags></app-tags>
         </aside>
     </div>
 </div>
