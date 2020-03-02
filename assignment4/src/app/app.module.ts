@@ -13,6 +13,7 @@ import { PostCardComponent } from './post-card/post-card.component';
 import { SearchWidgetComponent } from './search-widget/search-widget.component';
 import { LatestPostComponent } from './latest-post/latest-post.component';
 import { CategoriesComponent } from './categories/categories.component';
+import { TagsComponent } from './tags/tags.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { CategoriesComponent } from './categories/categories.component';
     PostCardComponent,
     SearchWidgetComponent,
     LatestPostComponent,
-    CategoriesComponent
+    CategoriesComponent,
+    TagsComponent
   ],
   imports: [
     BrowserModule,
