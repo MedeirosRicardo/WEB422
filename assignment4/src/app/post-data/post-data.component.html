@@ -19,15 +19,15 @@
                 <div class="comments meta-last"><i class="icon-comment"></i>{{ post.comments.length }}</div>
             </div>
         </div>
-        <div class="post-body" [innerHTML="post.post"]></div>
-        <div class="post-tags" [tags]="post.tags" *ngFor="let tag of tags">
-            <a routerLink class="tag">{{ tag }}</a>
+        <div class="post-body" [innerHTML]="post.post"></div>
+        <div class="post-tags">
+            <a routerLink class="tag" *ngFor="let tag of post.tags">{{ tag }}</a>
         </div>
         <div class="post-comments">
             <header>
                 <h3 class="h6">Post Comments<span class="no-of-comments">({{ post.comments.length }})</span></h3>
             </header>
-            <div class="comment" [comments]="post.comments" *ngFor="let comment of comments">
+            <div class="comment" *ngFor="let comment of post.comments">
                 <div class="comment-header d-flex justify-content-between">
                     <div class="user d-flex align-items-center">
                         <div class="image"><img src="/assets/img/user.svg" alt="..."
