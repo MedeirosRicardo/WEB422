@@ -21,7 +21,7 @@
         </div>
         <div class="post-body" [innerHTML]="post.post"></div>
         <div class="post-tags">
-            <a routerLink class="tag" *ngFor="let tag of post.tags">{{ tag }}</a>
+            <a [routerLink]="['/blog']" [queryParams]="{ tag: tag.substring(1) }" class="tag" *ngFor="let tag of post.tags">{{ tag }}</a>
         </div>
         <div class="post-comments">
             <header>

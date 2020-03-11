@@ -1,5 +1,5 @@
 <div class="post-thumbnail">
-    <a routerLink="/post">
+    <a [routerLink]="['/post', post._id]">
         <img src="{{ post.featuredImage }}" alt="..." class="img-fluid"></a>
 </div>
 <div class="post-details">
