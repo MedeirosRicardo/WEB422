@@ -14,11 +14,7 @@ export class PostService {
 
   // Get posts per page
   getPosts(page, tag, category): Observable<BlogPost[]> {
-
-    // Default apiURL
-    let apiURL: string = `https://arnin-blogapi.herokuapp.com/api/posts?page=${page}&perPage=${perPage}`;
-
-    return this.http.get<BlogPost[]>(apiURL);
+    return this.http.get<BlogPost[]>(`https://arnin-blogapi.herokuapp.com/api/posts?page=${page}&perPage=${perPage}`);
   }
 
   // Get post by id

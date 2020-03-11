@@ -4,7 +4,7 @@
     </header>
     <ul class="list-inline">
         <li class="list-inline-item" *ngFor="let tag of tags">
-            <a routerLink class="tag">{{ tag }}</a>
+            <a [routerLink]="['/blog']" [queryParams]="{ tag: tag.substring(1)}" class="tag">{{ tag }}</a>
         </li>
     </ul>
 </div>
