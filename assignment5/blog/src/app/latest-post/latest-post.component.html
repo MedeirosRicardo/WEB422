@@ -3,7 +3,7 @@
         <h3 class="h6">Latest Posts</h3>
     </header>
     <div class="blog-posts">
-        <a href="#" *ngFor="let post of posts">
+        <a [routerLink]="['/post', post.id]" *ngFor="let post of posts">
             <div class="item d-flex align-items-center">
                 <div class="image"><img [src]="post.featuredImage" alt="..." class="img-fluid">
                 </div>
