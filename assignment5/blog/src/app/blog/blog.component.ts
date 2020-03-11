@@ -18,13 +18,11 @@ export class BlogComponent implements OnInit {
 
   blogPosts: Array<BlogPost>;
 
-  private posts;
-
   constructor(private data: PostService, private route: ActivatedRoute) { }
 
   // Get page
   getPage(num) {
-    this.posts = this.data.getPosts(num, this.tag, this.category).subscribe(data => {
+    this.querySub = this.data.getPosts(num, this.tag, this.category).subscribe(data => {
       if (data.length > 0) {
         this.blogPosts = data, this.page = num;
       }

@@ -14,7 +14,20 @@ export class PostService {
 
   // Get posts per page
   getPosts(page, tag, category): Observable<BlogPost[]> {
-    return this.http.get<BlogPost[]>(`https://arnin-blogapi.herokuapp.com/api/posts?page=${page}&perPage=${perPage}`);
+    let params = {
+      page: page,
+      perPage: perPage.toString(),
+    }
+
+    if (tag != null || tag != undefined) {
+      params["tag"] = tag;
+    }
+
+    if (category != null || category != undefined) {
+      params["category"] = category;
+    }
+
+    return this.http.get<BlogPost[]>(`https://arnin-blogapi.herokuapp.com/api/posts`,{ params });
   }
 
   // Get post by id
