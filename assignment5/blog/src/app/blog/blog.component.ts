@@ -24,7 +24,11 @@ export class BlogComponent implements OnInit {
 
   // Get page
   getPage(num) {
-    this.posts = this.data.getPosts(num, this.tag, this.category).subscribe(data => this.blogPosts = data, this.page = num);
+    this.posts = this.data.getPosts(num, this.tag, this.category).subscribe(data => {
+      if (data.length > 0) {
+        this.blogPosts = data, this.page = num;
+      }
+    });
   }
 
   ngOnInit(): void {

@@ -14,15 +14,13 @@ export class PagingComponent implements OnInit {
   // Previous page
   btnPrevPage() {
     if (this.page > 1) {
-      this.page--;
-      this.newPage.emit(this.page);
+      this.newPage.emit(this.page - 1);
     }
   }
   
   // Next page
   btnNextPage() {
-    this.page++;
-    this.newPage.emit(this.page);
+    this.newPage.emit(this.page + 1);
   }
 
   constructor() { }
