@@ -20,14 +20,30 @@ export class PostService {
 
     // Add tag to apiURL
     if (tag !== null || tag !== undefined) {
-      apiURL = apiURL + `&${tag}`;
+      apiURL = apiURL + `&tag=${tag}`;
     }
 
     // Add category to apiURL
     if (category !== null || category !== undefined) {
-      apiURL = apiURL + `&category${category}`;
+      apiURL = apiURL + `&category=${category}`;
     }
 
     return this.http.get<BlogPost[]>(apiURL);
   }
+
+  // Get post by id
+  getPostByID(id): Observable<BlogPost> {
+    return this.http.get<BlogPost>(`https://arnin-blogapi.herokuapp.com/api/posts/${id}`);
+  }
+
+  // Get categories
+  getCategories(): Observable<any> {
+    return this.http.get<any>(`https://arnin-blogapi.herokuapp.com/api/categories`);
+  }
+
+  // Get tags
+  getTags(): Observable<string[]> {
+    return this.http.get<string[]>(`https://arnin-blogapi.herokuapp.com/api/tags`);
+  }
+
 }

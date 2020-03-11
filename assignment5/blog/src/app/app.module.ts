@@ -32,12 +32,12 @@ import { PostDataComponent } from './post-data/post-data.component';
     LatestPostComponent,
     CategoriesComponent,
     TagsComponent,
-    PostDataComponent,
-    HttpClientModule
+    PostDataComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
