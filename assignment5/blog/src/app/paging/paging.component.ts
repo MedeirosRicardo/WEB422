@@ -16,7 +16,6 @@ export class PagingComponent implements OnInit {
     if (this.page > 1) {
       this.page--;
       this.newPage.emit(this.page);
-      console.log(this.page);
     }
   }
   
@@ -24,7 +23,6 @@ export class PagingComponent implements OnInit {
   btnNextPage() {
     this.page++;
     this.newPage.emit(this.page);
-    console.log(this.page);
   }
 
   constructor() { }
