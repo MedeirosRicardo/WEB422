@@ -1,8 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { BlogPost } from '../../BlogPost';
+import { PostService } from '../post.service';
+import { ActivatedRoute } from '@angular/router';
 
-// Import Mock Data
-import blogData from '../../blogData.json';
-import { BlogPost } from '../../BlogPost'
 
 @Component({
   selector: 'app-blog',
@@ -11,11 +11,42 @@ import { BlogPost } from '../../BlogPost'
 })
 export class BlogComponent implements OnInit {
 
-  blogPosts: Array<BlogPost> = blogData;
+  page: number = 1;
+  tag: string = null;
+  category: string = null;
+  querySub: any;
 
-  constructor() { }
+  blogPosts: Array<BlogPost>;
+
+  private posts;
+
+  constructor(private data: PostService, private route: ActivatedRoute) { }
+
+  // Get page
+  getPage(num) {
+    this.posts = this.data.getPosts(num, this.tag, this.category).subscribe(data => this.blogPosts = data, this.page = num);
+  }
 
   ngOnInit(): void {
+    this.querySub = this.route.queryParams.subscribe(params => {
+
+      if (params['tag']) {
+        this.tag = params['tag'];
+        this.category = null;
+      }
+
+      if (params['category']) {
+        this.category = params['category'];
+        this.tag = null;
+      }
+
+      this.getPage(+params['page'] || 1);
+
+    }); 
+  }
+
+  ngOnDestroy() {
+    if (this.querySub) this.querySub.unsubscribe();
   }
 
 }
