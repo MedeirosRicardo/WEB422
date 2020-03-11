@@ -17,6 +17,7 @@ import { LatestPostComponent } from './latest-post/latest-post.component';
 import { CategoriesComponent } from './categories/categories.component';
 import { TagsComponent } from './tags/tags.component';
 import { PostDataComponent } from './post-data/post-data.component';
+import { PagingComponent } from './paging/paging.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { PostDataComponent } from './post-data/post-data.component';
     LatestPostComponent,
     CategoriesComponent,
     TagsComponent,
-    PostDataComponent
+    PostDataComponent,
+    PagingComponent
   ],
   imports: [
     BrowserModule,

@@ -6,6 +6,7 @@
                 <div class="row">
                     <!-- post -->
                     <app-post-card class="post col-xl-6" *ngFor="let post of blogPosts" [post]="post"></app-post-card>
+                    <div class="w-100"><app-paging [page]="page" (newPage)="getPage($event)"></app-paging></div>
                 </div>
             </div>
         </main>
