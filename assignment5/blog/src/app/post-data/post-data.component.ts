@@ -8,7 +8,7 @@ import { BlogPost } from '../../BlogPost';
   templateUrl: './post-data.component.html',
   styleUrls: ['./post-data.component.css']
 })
-export class PostDataComponent implements OnInit {
+export class PostDataComponent implements OnInit, OnDestroy {
 
   post: BlogPost;
 
