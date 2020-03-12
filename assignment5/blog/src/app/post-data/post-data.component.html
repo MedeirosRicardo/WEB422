@@ -1,4 +1,4 @@
-<div class="post-single">
+<div class="post-single" *ngIf="post!=null" [attr.post]="post">
     <div class="post-thumbnail"><img [src]="post.featuredImage" alt="..." class="img-fluid">
     </div>
     <div class="post-details">
