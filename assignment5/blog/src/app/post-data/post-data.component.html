@@ -14,7 +14,7 @@
                 <div class="title"><span>{{ post.postedBy }}</span></div>
             </a>
             <div class="d-flex align-items-center flex-wrap">
-                <div class="date"><i class="icon-clock"></i>{{ post.postDate }}</div>
+                <div class="date"><i class="icon-clock"></i>{{ post.postDate | date:'mediumDate' }}</div>
                 <div class="views"><i class="icon-eye"></i>{{ post.views }}</div>
                 <div class="comments meta-last"><i class="icon-comment"></i>{{ post.comments.length }}</div>
             </div>
@@ -33,7 +33,7 @@
                         <div class="image"><img src="/assets/img/user.svg" alt="..."
                                 class="img-fluid rounded-circle"></div>
                         <div class="title"><strong>{{ comment.author }}</strong>
-                            <span class="date">{{ comment.date }}</span>
+                            <span class="date">{{ comment.date | date:'mediumDate' }}</span>
                         </div>
                     </div>
                 </div>
