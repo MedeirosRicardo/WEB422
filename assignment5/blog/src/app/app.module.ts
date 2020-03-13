@@ -18,6 +18,7 @@ import { CategoriesComponent } from './categories/categories.component';
 import { TagsComponent } from './tags/tags.component';
 import { PostDataComponent } from './post-data/post-data.component';
 import { PagingComponent } from './paging/paging.component';
+import { FooterPostsComponent } from './footer-posts/footer-posts.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import { PagingComponent } from './paging/paging.component';
     CategoriesComponent,
     TagsComponent,
     PostDataComponent,
-    PagingComponent
+    PagingComponent,
+    FooterPostsComponent
   ],
   imports: [
     BrowserModule,
