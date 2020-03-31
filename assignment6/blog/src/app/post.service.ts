@@ -3,7 +3,6 @@ import { HttpClient } from '@angular/common/http';
 import { BlogPost } from '../BlogPost';
 import { Observable } from 'rxjs';
 
-const perPage = 6;
 
 @Injectable({
   providedIn: 'root'
@@ -12,8 +11,22 @@ export class PostService {
 
   constructor(private http: HttpClient) { }
 
+  // Get all posts
+  getAllPosts(): Observable<BlogPost[]> {
+    const perPage = Number.MAX_SAFE_INTEGER.toString();
+
+    let params = {
+      page: "1",
+      perPage: perPage
+    }
+
+    return this.http.get<BlogPost[]>(`https://arnin-blogapi.herokuapp.com/api/posts`, { params });
+  }
+
   // Get posts per page
   getPosts(page, tag, category): Observable<BlogPost[]> {
+    const perPage = 6;
+    
     let params = {
       page: page,
       perPage: perPage.toString(),
@@ -33,6 +46,21 @@ export class PostService {
   // Get post by id
   getPostByID(id): Observable<BlogPost> {
     return this.http.get<BlogPost>(`https://arnin-blogapi.herokuapp.com/api/posts/${id}`);
+  }
+
+  // Create new post
+  newPost(data: BlogPost): Observable<any> {
+    return this.http.post<any>(`https://arnin-blogapi.herokuapp.com/api/posts`, data);
+  }
+
+  // Update post
+  updatePostById(id: string, data: BlogPost): Observable<any> {
+    return this.http.put<any>(`https://arnin-blogapi.herokuapp.com/api/posts/${id}`, data);
+  }
+
+  // Delete post
+  deletePostById(id: string): Observable<any> {
+    return this.http.delete<any>(`https://arnin-blogapi.herokuapp.com/api/posts/${id}`);
   }
 
   // Get categories
