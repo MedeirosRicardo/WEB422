@@ -1,0 +1,10 @@
+<div class="latest-posts" *ngFor="let post of blogPosts">
+    <div class="post">
+        <a [routerLink]="['/post', post._id]">
+            <div class="post d-flex align-items-center">
+                <div class="image"><img [src]="post.featuredImage" alt="..." class="img-fluid"></div>
+                <div class="title"><strong>{{ post.title }}</strong><span class="date last-meta">{{ post.postDate | date:'mediumDate' }}</span></div>
+            </div>
+        </a>
+    </div>
+</div>
