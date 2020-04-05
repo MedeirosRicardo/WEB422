@@ -1,0 +1,25 @@
+<br />
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <a [routerLink]="['/admin/newPost']" class="btn btn-success btn-sm pull-right">+&nbsp;&nbsp;New Post</a><br /><br />
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th>Title</th>
+                        <th>Post Date</th>
+                        <th>Category</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let posts of blogPosts" [routerLink]="['/admin/post', posts._id]">
+                        <td>{{ posts.title }}</td>
+                        <td>{{ posts.postDate | date:'mediumDate' }}</td>
+                        <td>{{ posts.category }}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<br />
