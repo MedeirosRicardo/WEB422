@@ -1,5 +1,4 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
 import { PostService } from '../post.service';
 import { BlogPost } from '../../BlogPost';
 
@@ -14,7 +13,7 @@ export class PostsTableComponent implements OnInit, OnDestroy {
 
   private posts;
 
-  constructor(private data: PostService, private route: ActivatedRoute) { }
+  constructor(private data: PostService) { }
 
   ngOnInit(): void {
     this.posts = this.data.getAllPosts().subscribe(data => this.blogPosts = data);

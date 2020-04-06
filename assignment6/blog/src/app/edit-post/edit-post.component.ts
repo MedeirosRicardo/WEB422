@@ -1,6 +1,6 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, Input } from '@angular/core';
 import { PostService } from '../post.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { BlogPost } from '../../BlogPost';
 import { NgForm } from '@angular/forms';
 
@@ -17,23 +17,24 @@ export class EditPostComponent implements OnInit, OnDestroy {
 
   private post;
 
-  constructor(private data: PostService, private route: ActivatedRoute) { }
+  constructor(private data: PostService, private route: ActivatedRoute, private router: Router) { }
 
   ngOnInit(): void {
-    this.post = this.route.params.subscribe(params => {
-      this.data.getPostByID(params['id']).subscribe(data => {
+    this.post = this.data.getPostByID(this.route.snapshot.params['id']).subscribe(data => {
         this.blogPost = data; 
         this.tags = data.tags.toString();
       })
-    })
   }
 
   ngOnDestroy() {
     if (this.post) this.post.unsubscribe();
   }
 
-  ngSubmit(f: NgForm) {
-    
+  onSubmit(f: NgForm): void {
+    this.blogPost = this.blogPost;
+    this.blogPost.tags = this.tags.split(',').map(tag => tag.trim());
+    this.data.updatePostById(this.blogPost._id, this.blogPost).subscribe();
+    this.router.navigate(['admin']);
   }
 
 }

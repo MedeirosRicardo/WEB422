@@ -15,7 +15,7 @@ const routes: Routes = [
   { path: 'home', component: HomeComponent },
   { path: 'blog', component: BlogComponent },
   { path: 'post/:id', component: PostComponent },
-  { path: 'admin/posts', component: PostsTableComponent },
+  { path: 'admin', component: PostsTableComponent },
   { path: 'admin/newPost', component: NewPostComponent },
   { path: 'admin/post/:id', component: EditPostComponent },
   { path: '', redirectTo: '/home', pathMatch: 'full' },
