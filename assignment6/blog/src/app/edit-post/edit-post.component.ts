@@ -16,6 +16,7 @@ export class EditPostComponent implements OnInit, OnDestroy {
   tags: string;
 
   private post;
+  private form;
 
   constructor(private data: PostService, private route: ActivatedRoute, private router: Router) { }
 
@@ -33,8 +34,11 @@ export class EditPostComponent implements OnInit, OnDestroy {
   onSubmit(f: NgForm): void {
     this.blogPost = this.blogPost;
     this.blogPost.tags = this.tags.split(',').map(tag => tag.trim());
-    this.data.updatePostById(this.blogPost._id, this.blogPost).subscribe();
-    this.router.navigate(['admin']);
+    this.data.updatePostById(this.blogPost._id, this.blogPost).subscribe(go => this.goTo());
+  }
+
+  goTo() {
+    this.router.navigate(['/admin']);
   }
 
 }

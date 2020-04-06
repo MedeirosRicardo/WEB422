@@ -1,6 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { PostService } from '../post.service';
 import { BlogPost } from '../../BlogPost';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-posts-table',
@@ -13,7 +14,7 @@ export class PostsTableComponent implements OnInit, OnDestroy {
 
   private posts;
 
-  constructor(private data: PostService) { }
+  constructor(private data: PostService, private router: Router) { }
 
   ngOnInit(): void {
     this.posts = this.data.getAllPosts().subscribe(data => this.blogPosts = data);
@@ -21,6 +22,10 @@ export class PostsTableComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     if (this.posts) this.posts.unsubscribe();
+  }
+
+  rowClicked(e, id) {
+    this.router.navigate(['/admin/post', id]);
   }
 
 }
