@@ -2,7 +2,7 @@
 <div class="container">
     <div class="row">
         <div class="col-md-12">
-            <form #f="ngForm" (ngSubmit)="onSubmit(f)">
+            <form (ngSubmit)="onSubmit()">
                 <div class="form-group">
                     <label>Title</label>
                     <input type="text" class="form-control" id="title" name="title" [(ngModel)]="blogPost.title">
@@ -24,7 +24,7 @@
                     <textarea class="form-control" id="tags" name="tags" [(ngModel)]="tags"></textarea>
                 </div>
 
-                <div class="pull-right"><button class="btn btn-danger btn-sm">Delete Post</button> &nbsp; <button
+                <div class="pull-right"><button class="btn btn-danger btn-sm" (click)="deletePost(blogPost._id)">Delete Post</button> &nbsp; <button
                         type="submit" class="btn btn-success btn-sm">Update Post</button></div>
             </form>
         </div>
