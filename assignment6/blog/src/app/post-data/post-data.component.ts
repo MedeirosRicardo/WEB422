@@ -19,7 +19,11 @@ export class PostDataComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.querySub = this.route.params.subscribe(params => {
-      this.data.getPostByID(params['id']).subscribe(data => this.post = data);
+      this.data.getPostByID(params['id']).subscribe(data => { 
+        this.post = data,
+        this.post.views++,
+        this.data.updatePostById(this.post._id, this.post).subscribe();
+      });
     });
   }
 
