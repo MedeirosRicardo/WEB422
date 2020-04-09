@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { PostService } from '../post.service';
 import { BlogPost } from '../../BlogPost';
 
@@ -7,7 +7,7 @@ import { BlogPost } from '../../BlogPost';
   templateUrl: './footer-posts.component.html',
   styleUrls: ['./footer-posts.component.css']
 })
-export class FooterPostsComponent implements OnInit {
+export class FooterPostsComponent implements OnInit, OnDestroy {
 
   constructor(private data: PostService) { }
 
@@ -17,6 +17,10 @@ export class FooterPostsComponent implements OnInit {
 
   ngOnInit(): void {
     this.posts = this.data.getPosts(1, null, null).subscribe(data => this.blogPosts = data.slice(0,3));
+  }
+
+  ngOnDestroy(): void {
+    if (this.posts) this.posts.unsubscribe();
   }
 
 }
