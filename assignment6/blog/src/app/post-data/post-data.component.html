@@ -44,15 +44,15 @@
             <header>
                 <h3 class="h6">Leave a reply</h3>
             </header>
-            <form action="#" class="commenting-form">
+            <form class="commenting-form" (ngSubmit)="submitComment()">
                 <div class="row">
                     <div class="form-group col-md-12">
                         <input type="text" name="username" id="username" placeholder="Name"
-                            class="form-control">
+                            class="form-control" [(ngModel)]="commentName">
                     </div>
                     <div class="form-group col-md-12">
                         <textarea name="usercomment" id="usercomment" placeholder="Type your comment"
-                            class="form-control"></textarea>
+                            class="form-control" [(ngModel)]="commentText"></textarea>
                     </div>
                     <div class="form-group col-md-12">
                         <button type="submit" class="btn btn-secondary">Submit Comment</button>
